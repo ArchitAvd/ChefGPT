@@ -82,6 +82,7 @@ expo-env.d.ts
 # typescript
 *.tsbuildinfo
 
+.turbo
 app-example
 
 # dependencies
@@ -94,7 +95,7 @@ app-example
 !.yarn/versions
 
 # next.js
-/.next/
+**/.next/
 /out/
 
 # debug
