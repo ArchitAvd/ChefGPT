@@ -1,0 +1,40 @@
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+import { Recipe, RecipeDocument } from './schemas/recipe.schema';
+
+@Injectable()
+export class RecipesService {
+  constructor(
+    @InjectModel(Recipe.name) private recipeModel: Model<RecipeDocument>,
+  ) {}
+
+  async getRecipes(ingredientsQuery: string, restriction: string) {
+    const ingredients = (ingredientsQuery || '')
+      .split(',')
+      .map((i) => i.trim().toLowerCase())
+      .filter(Boolean);
+
+    const filter: any = {};
+
+    if (ingredients.length) {
+      filter.ingredients = { $all: ingredients };
+    }
+
+    if (restriction && restriction.toLowerCase() !== 'all') {
+      filter.dietaryRestrictions = restriction.toLowerCase();
+    }
+
+    return this.recipeModel
+      .find(filter, {
+        name: 1,
+        image_url: 1,
+        prep_time: 1,
+        servings: 1,
+        calories_per_serving: 1,
+        dietaryRestrictions: 1,
+      })
+      .exec();
+  }
+  
+}
