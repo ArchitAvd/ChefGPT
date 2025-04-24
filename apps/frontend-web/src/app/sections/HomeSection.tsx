@@ -1,5 +1,5 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Recipe } from "@/src/app/types";
 import IngredientSearch from "@/src/app/components/recipe/IngredientSearch";
@@ -7,45 +7,23 @@ import RecipeFilter from "@/src/app/components/recipe/RecipeFilter";
 import RecipeCard from "@/src/app/components/recipe/RecipeCard";
 import Loading from "@/src/app/components/ui/Loading";
 
-const ingredients = [
-  "Tomato",
-  "Onion",
-  "Garlic",
-  "Potato",
-  "Carrot",
-  "Pepper",
-  "Salt",
-  "Sugar",
-  "Ginger",
-  "Coriander",
-  "Rice",
-  "Pasta",
-  "Olive Oil",
-  "Lemon",
-  "Chicken",
-  "Beef",
-  "Fish",
-  "Eggs",
-  "Milk",
-  "Cheese",
-  "Bread",
-  "Butter",
-  "Basil",
-  "Mushroom",
-  "Bell Pepper",
-  "Spinach",
-  "Cucumber",
-  "Lettuce",
-  "Avocado",
-];
-
 const HomeSection = () => {
   const router = useRouter();
   const [selectedIngredients, setSelectedIngredients] = useState<string[]>([]);
   const [activeFilter, setActiveFilter] = useState("all");
   const [isLoading, setIsLoading] = useState(false);
   const [recipes, setRecipes] = useState<Recipe[]>([]);
+  const [ingredients, setIngredients] = useState<string[]>([]);
   const [error, setError] = useState<string | null>(null);
+
+  useEffect(() => {
+    const fetchIngredients = async () => {
+      const res = await fetch("/api/ingredients");
+      const data = await res.json();
+      setIngredients(data);
+    };
+    fetchIngredients();
+  }, []);
 
   const handleSelectIngredient = (ingredient: string) => {
     if (!selectedIngredients.includes(ingredient)) {
