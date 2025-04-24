@@ -12,11 +12,13 @@ export class RecipesController {
     @Query('restrictions') restrictions: string,
     @Res() res: Response,
   ) {
+    console.log(ingredients);
     try {
       const recipes = await this.recipesService.getRecipes(
         ingredients,
         restrictions,
       );
+      console.log('Result:', recipes);
       res.json(recipes);
     } catch (error) {
       console.error('❌ Error fetching recipes:', error);

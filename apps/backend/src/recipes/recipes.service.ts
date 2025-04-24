@@ -18,11 +18,16 @@ export class RecipesService {
     const filter: any = {};
 
     if (ingredients.length) {
-      filter.ingredients = { $all: ingredients };
+      // Build an array of conditions for each ingredient
+      filter.$and = ingredients.map((ingredient) => ({
+        'ingredients.name': { $regex: new RegExp(`^${ingredient}$`, 'i') },
+      }));
     }
 
     if (restriction && restriction.toLowerCase() !== 'all') {
-      filter.dietaryRestrictions = restriction.toLowerCase();
+      filter.dietaryRestrictions = {
+        $regex: new RegExp(`^${restriction}$`, 'i'),
+      };
     }
 
     return this.recipeModel
