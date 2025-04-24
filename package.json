@@ -9,7 +9,7 @@
   ],
   "scripts": {
     "start": "turbo run start",
-    "dev": "turbo run dev",
+    "dev": "node scripts/dev.js",
     "build": "turbo run build"
   },
   "keywords": [],
@@ -17,6 +17,7 @@
   "license": "ISC",
   "description": "",
   "devDependencies": {
-    "turbo": "^2.5.0"
+    "turbo": "^2.5.0",
+    "wait-on": "^8.0.3"
   }
 }
