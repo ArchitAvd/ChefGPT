@@ -3,12 +3,14 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
 import { RecipesModule } from './recipes/recipes.module';
 import { HealthModule } from './health/health.module';
+import { ScheduleModule } from '@nestjs/schedule';
+import { IngredientsModule } from './ingredients/ingredients.module';
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true,
-      envFilePath: '.env', 
+      envFilePath: '.env',
     }),
 
     MongooseModule.forRootAsync({
@@ -26,6 +28,10 @@ import { HealthModule } from './health/health.module';
     RecipesModule,
 
     HealthModule,
+
+    IngredientsModule,
+
+    ScheduleModule.forRoot(),
   ],
 })
 export class AppModule {}

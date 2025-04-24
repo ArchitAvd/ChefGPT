@@ -36,5 +36,24 @@ export class RecipesService {
       })
       .exec();
   }
-  
+
+  async getRandomRecipe() {
+    const [randomRecipe] = await this.recipeModel
+      .aggregate([
+        { $sample: { size: 1 } },
+        {
+          $project: {
+            name: 1,
+            image_url: 1,
+            prep_time: 1,
+            servings: 1,
+            calories_per_serving: 1,
+            dietaryRestrictions: 1,
+          },
+        },
+      ])
+      .exec();
+
+    return randomRecipe || null;
+  }
 }

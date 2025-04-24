@@ -1,12 +1,13 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { Ingredient } from './ingredient.schema';
 
 export type RecipeDocument = Recipe & Document;
 
 @Schema()
 export class Recipe {
-  @Prop([String])
-  ingredients: string[];
+  @Prop([Ingredient])
+  ingredients: Ingredient[];
 
   @Prop()
   name: string;

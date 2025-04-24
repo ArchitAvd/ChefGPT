@@ -23,8 +23,9 @@ export class RecipesController {
       res.status(500).json({ error: 'Failed to fetch recipes' });
     }
   }
-  @Get('/health')
-  healthCheck(@Res() res: Response) {
-    res.status(200).json({ status: 'ok', message: 'Server is healthy' });
-  } 
+
+  @Get('random')
+  async getRandomRecipe() {
+    return this.recipesService.getRandomRecipe();
+  }
 }
