@@ -61,4 +61,13 @@ export class RecipesService {
 
     return randomRecipe || null;
   }
+
+  async getRecipeById(id: string): Promise<Recipe | null> {
+    try {
+      return await this.recipeModel.findById(id).exec();
+    } catch (error) {
+      console.error(`❌ Error fetching recipe with ID ${id}:`, error);
+      return null;
+    }
+  }
 }

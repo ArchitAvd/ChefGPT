@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { use, useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Recipe } from "@/src/app/types";
@@ -8,8 +8,9 @@ import Loading from "@/src/app/components/ui/Loading";
 export default function RecipeDetailPage({
   params,
 }: {
-  params: { id: string };
+  params: Promise<{ id: string }>;
 }) {
+  const { id } = use(params);
   const router = useRouter();
   const [recipe, setRecipe] = useState<Recipe | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -18,8 +19,7 @@ export default function RecipeDetailPage({
   useEffect(() => {
     const fetchRecipe = async () => {
       try {
-        const response = await fetch(`/api/recipes/${params.id}`);
-
+        const response = await fetch(`/api/recipes/${id}`);
         if (!response.ok) {
           throw new Error("Recipe not found");
         }
@@ -35,7 +35,7 @@ export default function RecipeDetailPage({
     };
 
     fetchRecipe();
-  }, [params.id]);
+  }, [id]);
 
   const goBack = () => {
     router.back();
@@ -162,9 +162,18 @@ export default function RecipeDetailPage({
               <h2 className="text-xl font-bold text-gray-800 mb-2">
                 Instructions
               </h2>
-              <p className="text-gray-600 whitespace-pre-line">
-                {instructions}
-              </p>
+
+              {Array.isArray(instructions) ? (
+                <ol className="list-decimal list-inside text-gray-600 space-y-2">
+                  {instructions.map((step, index) => (
+                    <li key={index}>{step}</li>
+                  ))}
+                </ol>
+              ) : (
+                <p className="text-gray-600 whitespace-pre-line">
+                  {instructions}
+                </p>
+              )}
             </div>
 
             <div className="flex justify-center mt-8">

@@ -6,7 +6,7 @@ const backendUrl = getBackendUrl();
 export async function GET(request: NextRequest) {
   try {
     const fullUrl = `${backendUrl}/api/recipes/random`;
-
+    console.log("Hi");
     const backendResponse = await fetch(fullUrl);
     const data = await backendResponse.json();
 

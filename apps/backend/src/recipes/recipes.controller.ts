@@ -1,4 +1,4 @@
-import { Controller, Get, Query, Res } from '@nestjs/common';
+import { Controller, Get, Param, Query, Res } from '@nestjs/common';
 import { RecipesService } from './recipes.service';
 import { Response } from 'express';
 
@@ -27,5 +27,21 @@ export class RecipesController {
   @Get('random')
   async getRandomRecipe() {
     return this.recipesService.getRandomRecipe();
+  }
+
+  @Get(':id')
+  async getRecipeById(@Param('id') id: string, @Res() res: Response) {
+    try {
+      const recipe = await this.recipesService.getRecipeById(id);
+
+      if (!recipe) {
+        return res.status(404).json({ message: 'Recipe not found' });
+      }
+
+      return res.json(recipe);
+    } catch (error) {
+      console.error('❌ Error fetching recipe by ID:', error);
+      res.status(500).json({ error: 'Failed to fetch recipe' });
+    }
   }
 }

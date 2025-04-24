@@ -76,7 +76,7 @@ const HomeSection = () => {
     setError(null);
 
     try {
-      const response = await fetch("/api/recipes/random");
+      const response = await fetch("/api/random");
 
       if (!response.ok) {
         throw new Error(`Failed to fetch a random recipe: ${response.status}`);
