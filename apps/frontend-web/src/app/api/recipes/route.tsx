@@ -9,13 +9,6 @@ export async function GET(request: NextRequest) {
     const ingredients = searchParams.get("ingredients");
     const restrictions = searchParams.get("restrictions");
 
-    const backendUrl = process.env.BACKEND_API_URL;
-    if (!backendUrl) {
-      throw new Error(
-        "BACKEND_API_URL is not defined in environment variables"
-      );
-    }
-
     // Build backend request URL with query parameters
     const queryParams = new URLSearchParams();
     if (ingredients) queryParams.append("ingredients", ingredients);

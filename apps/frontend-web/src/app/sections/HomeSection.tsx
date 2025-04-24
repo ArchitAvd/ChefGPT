@@ -93,6 +93,29 @@ const HomeSection = () => {
     }
   };
 
+  const getRandomRecipe = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch("/api/recipes/random");
+
+      if (!response.ok) {
+        throw new Error(`Failed to fetch a random recipe: ${response.status}`);
+      }
+
+      const data = await response.json();
+      setRecipes([data]); // Replace current recipes with the random one
+    } catch (error) {
+      console.error("Error fetching random recipe:", error);
+      setError(
+        "An error occurred while fetching a random recipe. Please try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleRecipeClick = (recipeId: string) => {
     router.push(`/recipe/${recipeId}`);
   };
@@ -118,14 +141,23 @@ const HomeSection = () => {
             onRemoveIngredient={handleRemoveIngredient}
           />
 
-          <RecipeFilter
-            activeFilter={activeFilter}
-            onFilterChange={handleFilterChange}
-          />
+          <div className="filter-container">
+            <RecipeFilter
+              activeFilter={activeFilter}
+              onFilterChange={handleFilterChange}
+            />
+          </div>
 
           <div className="search-actions">
             <button className="apply-button" onClick={searchRecipes}>
               <i className="fas fa-search"></i> Find Recipes
+            </button>
+
+            <button
+              className="apply-button random-recipe"
+              onClick={getRandomRecipe}
+            >
+              <i className="fas fa-random"></i> Surprise Me!
             </button>
           </div>
         </div>

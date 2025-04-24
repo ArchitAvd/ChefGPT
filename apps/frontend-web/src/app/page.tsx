@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
-import Navbar from "@/app/components/layout/Navbar";
-import ConnectionStatus from "@/app/components/layout/ConnectionStatus";
-import HomeSection from "@/app/sections/HomeSection";
-import AddRecipeSection from "@/app/sections/AddRecipeSection";
-import AboutSection from "@/app/sections/AboutSection";
-import ContactSection from "@/app/sections/ContactSection";
+import Navbar from "@/src/app/components/layout/Navbar";
+import ConnectionStatus from "@/src/app/components/layout/ConnectionStatus";
+import HomeSection from "@/src/app/sections/HomeSection";
+import AddRecipeSection from "@/src/app/sections/AddRecipeSection";
+import AboutSection from "@/src/app/sections/AboutSection";
+import ContactSection from "@/src/app/sections/ContactSection";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
