@@ -144,7 +144,10 @@ const HomeSection = () => {
 
         {error && <p className="text-center text-gray-500 mt-4">{error}</p>}
 
-        <div id="recipe-cards" className="recipe-list">
+        <div
+          id="recipe-cards"
+          className={`recipe-list ${recipes.length === 1 ? "single" : ""}`}
+        >
           {!isLoading &&
             recipes.length === 0 &&
             !error &&

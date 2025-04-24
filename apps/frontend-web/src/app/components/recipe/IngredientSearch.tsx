@@ -21,7 +21,6 @@ const IngredientSearch = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    // Filter ingredients based on search query
     if (query.trim() === "") {
       setFilteredIngredients([]);
       setIsDropdownVisible(false);
