@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { ContactForm } from "@/app/types";
+import { ContactForm } from "@/src/app/types";
 
 const ContactSection = () => {
   const [formData, setFormData] = useState<ContactForm>({

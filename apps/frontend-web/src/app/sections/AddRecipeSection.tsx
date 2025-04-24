@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import IngredientSearch from "@/app/components/recipe/IngredientSearch";
+import IngredientSearch from "@/src/app/components/recipe/IngredientSearch";
 
 const ingredients = [
   "Tomato",

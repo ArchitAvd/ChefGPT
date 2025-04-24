@@ -2,8 +2,8 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
-import { Recipe } from "@/app/types";
-import Loading from "@/app/components/ui/Loading";
+import { Recipe } from "@/src/app/types";
+import Loading from "@/src/app/components/ui/Loading";
 
 export default function RecipeDetailPage({
   params,

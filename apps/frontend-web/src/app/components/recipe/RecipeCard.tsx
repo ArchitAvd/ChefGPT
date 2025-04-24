@@ -1,4 +1,4 @@
-import { Recipe } from "@/app/types";
+import { Recipe } from "@/src/app/types";
 import Image from "next/image";
 
 interface RecipeCardProps {

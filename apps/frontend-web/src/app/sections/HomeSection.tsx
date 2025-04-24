@@ -1,11 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Recipe } from "@/app/types";
-import IngredientSearch from "@/app/components/recipe/IngredientSearch";
-import RecipeFilter from "@/app/components/recipe/RecipeFilter";
-import RecipeCard from "@/app/components/recipe/RecipeCard";
-import Loading from "@/app/components/ui/Loading";
+import { Recipe } from "@/src/app/types";
+import IngredientSearch from "@/src/app/components/recipe/IngredientSearch";
+import RecipeFilter from "@/src/app/components/recipe/RecipeFilter";
+import RecipeCard from "@/src/app/components/recipe/RecipeCard";
+import Loading from "@/src/app/components/ui/Loading";
 
 const ingredients = [
   "Tomato",
