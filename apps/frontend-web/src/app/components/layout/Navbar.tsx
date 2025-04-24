@@ -19,7 +19,7 @@ const Navbar = ({ activeSection, onSectionChange }: NavbarProps) => {
     <nav className="navbar">
       <Link href="/" className="logo" onClick={() => handleNavClick("home")}>
         <i className="fas fa-utensils"></i>
-        <h1>CookAI</h1>
+        <h1>ChefGPT</h1>
       </Link>
 
       <div className={`nav-links ${mobileMenuOpen ? "active" : ""}`}>

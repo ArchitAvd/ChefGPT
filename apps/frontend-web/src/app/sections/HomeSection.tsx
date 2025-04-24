@@ -125,7 +125,7 @@ const HomeSection = () => {
       <div className="container">
         <div className="main-logo">
           <h1>
-            <i className="fas fa-utensils"></i> CookAI
+            <i className="fas fa-utensils"></i> ChefGPT
           </h1>
           <p>
             Discover delicious recipes based on your available ingredients! Just

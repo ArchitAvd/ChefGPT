@@ -3,13 +3,13 @@ const AboutSection = () => {
     <div id="about-section" className="section">
       <div className="search-container">
         <h2 className="text-2xl font-bold mb-4 text-center text-gray-800">
-          <i className="fas fa-info-circle text-rose-500"></i> About CookAI
+          <i className="fas fa-info-circle text-rose-500"></i> About ChefGPT
         </h2>
         <div className="about-content">
           <p className="text-gray-700 mb-4">
-            CookAI is an AI-powered recipe suggestion system that helps you find
-            the perfect recipe based on your available ingredients and dietary
-            preferences.
+            ChefGPT is an AI-powered recipe suggestion system that helps you
+            find the perfect recipe based on your available ingredients and
+            dietary preferences.
           </p>
           <p className="text-gray-700 mb-4">
             Our system uses advanced AI technology to match your ingredients
@@ -18,11 +18,11 @@ const AboutSection = () => {
           </p>
           <p className="text-gray-700 mb-4">
             Whether you&apos;re a seasoned chef or a beginner in the kitchen,
-            CookAI makes it easy to discover new recipes and reduce food waste
+            ChefGPT makes it easy to discover new recipes and reduce food waste
             by using ingredients you already have.
           </p>
           <p className="text-gray-700">
-            Try CookAI today and transform your cooking experience. Simply
+            Try ChefGPT today and transform your cooking experience. Simply
             select the ingredients you have, apply any dietary filters, and let
             our AI do the rest!
           </p>

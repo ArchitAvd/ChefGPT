@@ -5,7 +5,7 @@ import "./globals.css";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "CookAI - AI Recipe Suggestion",
+  title: "ChefGPT - AI Recipe Suggestion",
   description: "Discover delicious recipes based on your available ingredients",
 };
 
