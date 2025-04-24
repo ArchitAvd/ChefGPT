@@ -1,12 +1,18 @@
 import { NextResponse } from "next/server";
+import { getBackendUrl } from "@/lib/getBackendUrl";
+
+const backendUrl = getBackendUrl();
 
 export async function GET() {
   try {
-    // Here we would normally check connection to a database or other services
-    // For demonstration purposes, we'll just return success
-    return NextResponse.json({ status: "ok" }, { status: 200 });
+    const backendResponse = await fetch(`${backendUrl}/api/health`);
+    const data = await backendResponse.json();
+    return NextResponse.json(data, { status: backendResponse.status });
   } catch (error) {
-    console.error("Health check failed:", error);
-    return NextResponse.json({ status: "error" }, { status: 500 });
+    console.error("Health check proxy failed:", error);
+    return NextResponse.json(
+      { status: "error", error: "Unable to reach backend" },
+      { status: 500 }
+    );
   }
 }

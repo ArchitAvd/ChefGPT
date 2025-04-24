@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { Recipe } from "@/app/types";
+import { Recipe } from "@/src/app/types";
 
 const mockRecipes: Recipe[] = [
   {

@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { ContactForm } from "@/app/types";
+import { ContactForm } from "@/src/app/types";
 
 export async function POST(request: NextRequest) {
   try {
