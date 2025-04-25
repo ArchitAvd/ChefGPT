@@ -94,6 +94,38 @@ const HomeSection = () => {
     }
   };
 
+  const getGeneratedRecipe = async () => {
+    setIsLoading(true);
+    setError(null);
+
+    try {
+      const query = new URLSearchParams({
+        ingredients: selectedIngredients.join(","),
+        dietary: activeFilter === "all" ? "" : activeFilter,
+      });
+      const response = await fetch(`/api/ai/generate?${query.toString()}`);
+
+      if (!response.ok) {
+        throw new Error(`Failed to generate a recipe: ${response.status}`);
+      }
+
+      const data = await response.json();
+      console.log(data);
+      // Store the recipe in sessionStorage
+      sessionStorage.setItem("generatedRecipe", JSON.stringify(data));
+
+      // Navigate to the generated recipe page
+      router.push("/generated-recipe");
+    } catch (error) {
+      console.error("Error generating recipe:", error);
+      setError(
+        "An error occurred while generating a recipe. Please try again."
+      );
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const handleRecipeClick = (recipeId: string) => {
     router.push(`/recipe/${recipeId}`);
   };
@@ -136,6 +168,10 @@ const HomeSection = () => {
               onClick={getRandomRecipe}
             >
               <i className="fas fa-random"></i> Surprise Me!
+            </button>
+
+            <button className="apply-button" onClick={getGeneratedRecipe}>
+              <i className="fas fa-wand-magic-sparkles"></i>Generate AI Recipe
             </button>
           </div>
         </div>

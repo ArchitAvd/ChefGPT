@@ -5,6 +5,7 @@ import { RecipesModule } from './recipes/recipes.module';
 import { HealthModule } from './health/health.module';
 import { ScheduleModule } from '@nestjs/schedule';
 import { IngredientsModule } from './ingredients/ingredients.module';
+import { AiModule } from './ai/ai.module';
 
 @Module({
   imports: [
@@ -30,6 +31,8 @@ import { IngredientsModule } from './ingredients/ingredients.module';
     HealthModule,
 
     IngredientsModule,
+
+    AiModule,
 
     ScheduleModule.forRoot(),
   ],
